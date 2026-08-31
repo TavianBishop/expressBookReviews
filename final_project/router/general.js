@@ -83,7 +83,7 @@ public_users.get('/review/:isbn',function (req, res) {
   }
   return res.status(300).json({message: "Yet to be implemented"});
 });
-
+//task 10
 function getBooksWithPromise() {
     axios.get('http://localhost:5000/')
       .then((response) => {
@@ -104,7 +104,7 @@ function getBooksWithPromise() {
   }
   
 
-  / Task 11: Get book details by ISBN using Promise callbacks
+  // Task 11: Get book details by ISBN using Promise callbacks
 function getBookByISBNWithPromise(isbn) {
   axios.get(`http://localhost:5000/isbn/${isbn}`)
     .then((response) => {
@@ -125,4 +125,46 @@ async function getBookByISBNWithAsyncAwait(isbn) {
   }
 }
 
+// Task 12: Get book details by Author using Promise callbacks
+function getBookByAuthorWithPromise(author) {
+    axios.get(`http://localhost:5000/author/${encodeURIComponent(author)}`)
+      .then((response) => {
+        console.log("Book by Author (Promise):", response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching book by author:", error.message);
+      });
+  }
+  
+  // Task 12 (alt): Get book details by Author using async/await
+  async function getBookByAuthorWithAsyncAwait(author) {
+    try {
+      const response = await axios.get(`http://localhost:5000/author/${encodeURIComponent(author)}`);
+      console.log("Book by Author (async/await):", response.data);
+    } catch (error) {
+      console.error("Error fetching book by author:", error.message);
+    }
+  }
+
+// Task 13: Get book details by Title using Promise callbacks
+function getBookByTitleWithPromise(title) {
+    axios.get(`http://localhost:5000/title/${encodeURIComponent(title)}`)
+      .then((response) => {
+        console.log("Book by Title (Promise):", response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching book by title:", error.message);
+      });
+  }
+  
+  // Task 13 (alt): Get book details by Title using async/await
+  async function getBookByTitleWithAsyncAwait(title) {
+    try {
+      const response = await axios.get(`http://localhost:5000/title/${encodeURIComponent(title)}`);
+      console.log("Book by Title (async/await):", response.data);
+    } catch (error) {
+      console.error("Error fetching book by title:", error.message);
+    }
+  }
+  
 module.exports.general = public_users;
