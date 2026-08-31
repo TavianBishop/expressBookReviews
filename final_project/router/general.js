@@ -93,6 +93,36 @@ function getBooksWithPromise() {
         console.error("Error fetching books:", error.message);
       });
   }
+
+  async function getBooksWithAsyncAwait() {
+    try {
+      const response = await axios.get('http://localhost:5000/');
+      console.log("Books (async/await):", response.data);
+    } catch (error) {
+      console.error("Error fetching books:", error.message);
+    }
+  }
   
+
+  / Task 11: Get book details by ISBN using Promise callbacks
+function getBookByISBNWithPromise(isbn) {
+  axios.get(`http://localhost:5000/isbn/${isbn}`)
+    .then((response) => {
+      console.log("Book by ISBN (Promise):", response.data);
+    })
+    .catch((error) => {
+      console.error("Error fetching book by ISBN:", error.message);
+    });
+}
+
+// Task 11 (alt): Get book details by ISBN using async/await
+async function getBookByISBNWithAsyncAwait(isbn) {
+  try {
+    const response = await axios.get(`http://localhost:5000/isbn/${isbn}`);
+    console.log("Book by ISBN (async/await):", response.data);
+  } catch (error) {
+    console.error("Error fetching book by ISBN:", error.message);
+  }
+}
 
 module.exports.general = public_users;
