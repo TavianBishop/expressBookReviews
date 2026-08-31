@@ -3,6 +3,7 @@ let books = require("./booksdb.js");
 let isValid = require("./auth_users.js").isValid;
 let users = require("./auth_users.js").users;
 const public_users = express.Router();
+const axios = require('axios');
 
 
 public_users.post("/register", (req, res) => {
@@ -82,5 +83,16 @@ public_users.get('/review/:isbn',function (req, res) {
   }
   return res.status(300).json({message: "Yet to be implemented"});
 });
+
+function getBooksWithPromise() {
+    axios.get('http://localhost:5000/')
+      .then((response) => {
+        console.log("Books (Promise):", response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching books:", error.message);
+      });
+  }
+  
 
 module.exports.general = public_users;
